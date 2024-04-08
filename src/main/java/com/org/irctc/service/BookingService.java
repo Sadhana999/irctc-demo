@@ -1,6 +1,6 @@
 package com.org.irctc.service;
 
-import com.java.generated.jooq.tables.pojos.Booking;
+import com.org.irctc.tables.pojos.Booking;
 import com.org.irctc.dto.BookingRequestDto;
 
 import java.util.List;

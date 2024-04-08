@@ -1,6 +1,6 @@
 package com.org.irctc.repository;
 
-import com.java.generated.jooq.tables.pojos.Seat;
+import com.org.irctc.tables.pojos.Seat;
 
 import java.util.List;
 

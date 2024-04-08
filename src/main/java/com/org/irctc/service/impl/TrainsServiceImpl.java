@@ -6,7 +6,7 @@ import com.org.irctc.repository.TrainRepository;
 import com.org.irctc.service.TrainsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.java.generated.jooq.tables.pojos.Train;
+import com.org.irctc.tables.pojos.Train;
 
 import java.time.LocalDateTime;
 import java.util.List;

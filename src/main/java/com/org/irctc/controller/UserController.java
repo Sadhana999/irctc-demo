@@ -16,6 +16,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping()
+    public ResponseEntity<ResponseObject> test(){
+        ResponseObject responseObject = ResponseUtil.buildResponse("success");
+        return new ResponseEntity<>(responseObject, HttpStatus.OK);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<ResponseObject> registerUser(@RequestBody UserRequestDto requestDto){
         ResponseObject responseObject = ResponseUtil.buildResponse(userService.registerUser(requestDto));

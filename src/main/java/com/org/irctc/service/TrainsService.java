@@ -1,7 +1,7 @@
 package com.org.irctc.service;
 
 import com.org.irctc.dto.TrainRequestDto;
-import com.java.generated.jooq.tables.pojos.Train;
+import com.org.irctc.tables.pojos.Train;
 
 import java.util.List;
 

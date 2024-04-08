@@ -1,12 +1,14 @@
 package com.org.irctc.service.impl;
 
-import com.java.generated.jooq.tables.pojos.Booking;
+import com.org.irctc.exception.InvalidEntityException;
+import com.org.irctc.tables.pojos.Booking;
 import com.org.irctc.constants.StatusConstants;
 import com.org.irctc.dto.BookingRequestDto;
 import com.org.irctc.repository.BookingRepository;
 import com.org.irctc.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +21,13 @@ public class BookingServiceImpl implements BookingService {
     BookingRepository bookingRepository;
 
     @Override
+    @Transactional
     public String addBooking(BookingRequestDto bookingRequestDto){
+
+        if(!bookingRepository.isSeatAvailableInTrain(bookingRequestDto.getTrainId(),
+                bookingRequestDto.getSeatId())){
+            throw new InvalidEntityException("Seat is already booked");
+        }
         Booking newBooking = new Booking();
         String bookingId = UUID.randomUUID().toString();
         newBooking.setBookingId(bookingId);

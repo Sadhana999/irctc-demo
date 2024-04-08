@@ -1,6 +1,7 @@
 package com.org.irctc.service.impl;
 
-import com.java.generated.jooq.tables.pojos.User;
+import com.org.irctc.security.BCryptConfiguration;
+import com.org.irctc.tables.pojos.User;
 import com.org.irctc.constants.StatusConstants;
 import com.org.irctc.dto.UserRequestDto;
 import com.org.irctc.exception.InvalidEntityException;
@@ -17,7 +18,9 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private BCryptConfiguration bCryptConfiguration;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public String registerUser(UserRequestDto userRequestDto){
@@ -31,9 +34,10 @@ public class UserServiceImpl implements UserService {
         String userId= UUID.randomUUID().toString();
         newUser.setUserId(userId);
         newUser.setUserName(userRequestDto.getUserName());
-        newUser.setPassword(userRequestDto.getPassword());
+        newUser.setPassword(bCryptConfiguration.passwordEncoder().encode(userRequestDto.getPassword()));
         newUser.setEmail(userRequestDto.getEmailId());
         newUser.setPhoneNumber(userRequestDto.getPhoneNumber());
+        newUser.setRole(userRequestDto.getRoleName());
         newUser.setCreatedBy("USER");
         newUser.setCreatedDate(LocalDateTime.now());
         newUser.setStatus(StatusConstants.ACTIVE);

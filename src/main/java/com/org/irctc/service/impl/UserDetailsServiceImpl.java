@@ -1,6 +1,6 @@
 package com.org.irctc.service.impl;
 
-import com.java.generated.jooq.tables.pojos.User;
+import com.org.irctc.tables.pojos.User;
 import com.org.irctc.constants.LoggedInStatusConstants;
 import com.org.irctc.model.UserModel;
 import com.org.irctc.repository.UserRepository;

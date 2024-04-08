@@ -1,7 +1,7 @@
 package com.org.irctc.repository.impl;
 
-import com.java.generated.jooq.tables.daos.SeatDao;
-import com.java.generated.jooq.tables.pojos.Seat;
+import com.org.irctc.tables.daos.SeatDao;
+import com.org.irctc.tables.pojos.Seat;
 import com.org.irctc.repository.SeatRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;

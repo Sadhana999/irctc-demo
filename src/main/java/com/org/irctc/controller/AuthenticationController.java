@@ -1,6 +1,6 @@
 package com.org.irctc.controller;
 
-import com.java.generated.jooq.tables.pojos.User;
+import com.org.irctc.tables.pojos.User;
 import com.org.irctc.constants.LoggedInStatusConstants;
 import com.org.irctc.dto.UserRequestDto;
 import com.org.irctc.helper.ResponseObject;
@@ -10,6 +10,7 @@ import com.org.irctc.service.UserDetailsService;
 import com.org.irctc.service.UserService;
 import com.org.irctc.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -43,8 +45,8 @@ public class AuthenticationController {
             var authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
             var user = (UserModel) authentication.getPrincipal();
 
-            String jwtToken = jwtUtil.generateToken(user.getUsername());
             Optional<User> existingUser = userRepository.getUserByUserName(user.getUsername());
+            String jwtToken = jwtUtil.generateToken(user.getUsername(), existingUser.get().getRole());
             userRepository.updatedLoginStatus(user.getUsername(), LoggedInStatusConstants.LOGGED_IN);
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, jwtToken)

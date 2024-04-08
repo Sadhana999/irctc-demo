@@ -1,14 +1,14 @@
 package com.org.irctc.repository.impl;
 
-import com.java.generated.jooq.Tables;
-import com.java.generated.jooq.tables.daos.SeatDao;
+import com.org.irctc.Tables;
+import com.org.irctc.tables.daos.SeatDao;
 import com.org.irctc.constants.StatusConstants;
 import com.org.irctc.repository.TrainRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.java.generated.jooq.tables.daos.TrainDao;
-import com.java.generated.jooq.tables.pojos.Train;
+import com.org.irctc.tables.daos.TrainDao;
+import com.org.irctc.tables.pojos.Train;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.org.irctc.repository.impl;
 
-import com.java.generated.jooq.Tables;
-import com.java.generated.jooq.tables.daos.UserDao;
-import com.java.generated.jooq.tables.pojos.User;
+import com.org.irctc.Tables;
+import com.org.irctc.tables.daos.UserDao;
+import com.org.irctc.tables.pojos.User;
 import com.org.irctc.constants.StatusConstants;
 import com.org.irctc.repository.UserRepository;
 import org.jooq.DSLContext;

@@ -52,9 +52,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and()
                 .authorizeRequests()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/v1/authenticate/log-in")).permitAll()
-                        .requestMatchers(AntPathRequestMatcher.antMatcher("/v1/user/register")).permitAll()
-                .anyRequest().authenticated()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/v1/authenticate/log-in")).permitAll()
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/v1/user/register")).permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer().jwt().decoder(token -> jwtDecoder(token)).jwtAuthenticationConverter(jwtAuthenticationConverter()).and()
                 .and()

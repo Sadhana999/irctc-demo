@@ -1,6 +1,6 @@
 package com.org.irctc.controller;
 
-import com.java.generated.jooq.tables.pojos.Train;
+import com.org.irctc.tables.pojos.Train;
 import com.org.irctc.helper.ResponseObject;
 import com.org.irctc.helper.ResponseUtil;
 import com.org.irctc.service.TrainsService;

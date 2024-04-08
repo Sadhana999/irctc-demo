@@ -47,12 +47,15 @@ public class JWTUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    public String  generateToken(String userName) {
-        return doGenerateToken(userName);
+    public String  generateToken(String userName, String permissions) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("USER_PERMISSIONS",permissions);
+        return doGenerateToken(claims, userName);
     }
 
-    private String doGenerateToken(String subject) {
+    private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + jwtTokenValidity * 1000))

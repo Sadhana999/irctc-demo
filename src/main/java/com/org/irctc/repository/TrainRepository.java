@@ -1,6 +1,6 @@
 package com.org.irctc.repository;
 
-import com.java.generated.jooq.tables.pojos.Train;
+import com.org.irctc.tables.pojos.Train;
 
 import java.util.List;
 

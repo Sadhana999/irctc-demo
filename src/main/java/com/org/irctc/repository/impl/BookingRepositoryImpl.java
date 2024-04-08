@@ -1,10 +1,10 @@
 package com.org.irctc.repository.impl;
 
-import com.java.generated.jooq.Tables;
-import com.java.generated.jooq.tables.daos.BookingDao;
-import com.java.generated.jooq.tables.daos.SeatDao;
-import com.java.generated.jooq.tables.pojos.Booking;
-import com.java.generated.jooq.tables.pojos.Seat;
+import com.org.irctc.Tables;
+import com.org.irctc.tables.daos.BookingDao;
+import com.org.irctc.tables.daos.SeatDao;
+import com.org.irctc.tables.pojos.Booking;
+import com.org.irctc.tables.pojos.Seat;
 import com.org.irctc.repository.BookingRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,23 @@ public class BookingRepositoryImpl implements BookingRepository {
                 .from(Tables.SEAT)
                 .leftJoin(Tables.BOOKING)
                 .on(Tables.BOOKING.SEAT_ID.eq(Tables.SEAT.SEAT_ID).and(Tables.BOOKING.TRAIN_ID.eq(trainId)))
-                .where(Tables.BOOKING.BOOKING_ID.isNull()) // Filter to find seats not booked
+                .where(Tables.BOOKING.BOOKING_ID.isNull())
                 .fetchInto(Seat.class);
+    }
+
+    @Override
+    public boolean isSeatAvailableInTrain(String trainId, String seatId){
+        Seat seat = dslContext.select()
+                .from(Tables.SEAT)
+                .innerJoin(Tables.BOOKING).on(Tables.BOOKING.SEAT_ID.eq(Tables.SEAT.SEAT_ID))
+                .where(Tables.BOOKING.TRAIN_ID.eq(trainId)
+                        .and(Tables.BOOKING.SEAT_ID.eq(seatId)))
+                .forUpdate()
+                .fetchOneInto(Seat.class);
+
+        if(seat!=null)
+            return true;
+        return false;
     }
 
     @Override
