@@ -24,9 +24,6 @@ import java.io.IOException;
 @Component
 public class AuthenticationFilter extends OncePerRequestFilter {
 
-    @Value("${api.key}")
-    private String apiKey;
-
     @Autowired
     private JWTUtil jwtUtil;
     @Autowired

@@ -12,5 +12,6 @@ A Backend service built using Java, Spring Boot and MySQL which has the function
 # Core Functionalities
 1. Added Jwt token for Authorization token for all the apis after login to ensure secure data flow.
 2. Use Authorization token generated from '/authenticate/log-in' api to access all other apis.
-3. Used forUpdate() in jooq to avoid the race condition - only one user can book the same seat at a time.
+3. Based on Role(ADMIN/USER), provided access for the /train APIs.
+4. Used forUpdate() in jooq to avoid the race condition - only one user can book the same seat(in same train) at a time.
 
